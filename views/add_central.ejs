@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Information(Central)</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      margin-left: 40%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add Information - Central</h2>
+  <form action="/add_central" method="post">
+    <label for="serialNo">Serial No:</label>
+    <input type="text" id="serialNo" name="serialNo" required>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required>
+
+    <label for="category">Location:</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="stateOrUT">State or UT:</label>
+    <input type="text" id="stateOrUT" name="stateOrUT" required>
+
+    <label for="valueStolen2014">Value Stolen (2014):</label>
+    <input type="text" id="valueStolen2014" name="valueStolen2014" required>
+
+    <label for="valueRecovered2014">Value Recovered (2014):</label>
+    <input type="text" id="valueRecovered2014" name="valueRecovered2014" required>
+
+    <label for="percentageRecovery2014">Percentage Recovery (2014):</label>
+    <input type="text" id="percentageRecovery2014" name="percentageRecovery2014" required>
+
+    <label for="valueStolen2015">Value Stolen (2015):</label>
+    <input type="text" id="valueStolen2015" name="valueStolen2015" required>
+
+    <label for="valueRecovered2015">Value Recovered (2015):</label>
+    <input type="text" id="valueRecovered2015" name="valueRecovered2015" required>
+
+    <label for="percentageRecovery2015">Percentage Recovery (2015):</label>
+    <input type="text" id="percentageRecovery2015" name="percentageRecovery2015" required>
+
+    <label for="valueStolen2016">Value Stolen (2016):</label>
+    <input type="text" id="valueStolen2016" name="valueStolen2016" required>
+
+    <label for="valueRecovered2016">Value Recovered (2016):</label>
+    <input type="text" id="valueRecovered2016" name="valueRecovered2016" required>
+
+    <label for="percentageRecovery2016">Percentage Recovery (2016):</label>
+    <input type="text" id="percentageRecovery2016" name="percentageRecovery2016" required>
+
+    <button type="submit">Add Record</button>
+  </form>
+</body>
+</html>

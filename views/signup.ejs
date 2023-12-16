@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .main {
+        display: flex;
+        margin-left: 5rem;
+        margin-top: 7rem;
+    }
+
+    .maintext {
+        line-height: 40%;
+        background-color: wheat;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        height: 18rem;
+        border-radius: 5px;
+        width: 30rem;
+    }
+
+    .maintext1 {
+        line-height: 40%;
+        background-color: wheat;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        height: 9rem;
+        width: 28rem;
+        border-radius: 5px;
+        margin-top: 5rem;
+    }
+
+    .p1 {
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+    .p2 {
+        opacity: 0.7;
+
+    }
+
+    b {
+        color: green;
+    }
+
+    button {
+        width: 20rem;
+        padding: 0.5rem 2rem;
+        background-color: #2c3e50;
+        color: wheat;
+        border-radius: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #415264;
+    }
+
+    .p3 {
+        margin-left: 4.5rem;
+    }
+
+    .p3:hover {
+        text-decoration: underline;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+    }
+
+    input:placeholder-shown {
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <div class="main">
+
+        <div class="maintext">
+            <!-- Add an ID to the form for easier access in JavaScript -->
+            <form id="signupForm" action="http://localhost:3000/signup" method="post">
+                <p class="p1">Create Account</p>
+                <p class="p2">or use your email for registration</p><br><br>
+                <!-- Add IDs to the input fields for easier access in JavaScript -->
+                <input type="text" id="username" name="username" placeholder="Username"><br>
+                <input type="text" id="email" name="email" placeholder="Email"><br>
+                <input type="text" id="password" name="password" placeholder="Password"><br><br><br><br>
+                <button type="submit">SIGN UP</button><br>
+            </form>
+            <div class="maintext1">
+                <p class="p1">Welcome Back!</p>
+                <p class="p2">To keep connected with us please login with your personal info</p>
+                <!-- Add an ID to the "Sign In" button for easier access in JavaScript -->
+                <button id="signInBtn">SIGN IN </button><br>
+            </div>
+        </div>
+        <div class="lockimage">
+            <img src="sign_up.jpg" alt="" height="500">
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const signupForm = document.getElementById('signupForm');
+            const signInBtn = document.getElementById('signInBtn');
+
+            signupForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                fetch('http://localhost:3000/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        password: password,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Server response:', data);
+                        // You can handle the response from the server here
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
+            // Add event listener to hide the form when "Sign In" button is clicked
+            signInBtn.addEventListener('click', function () {
+                signupForm.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>
