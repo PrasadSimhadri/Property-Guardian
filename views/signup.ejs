@@ -79,7 +79,9 @@
         color: black;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
         width: 300px;
         padding: 10px;
         margin: 5px 0;
@@ -95,74 +97,79 @@
         box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
     }
 
+    input[type="email"]:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+    }
+
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+    }
+
     input:placeholder-shown {
         font-size: 12px;
+    }
+
+    .hidden {
+        display: none;
     }
 </style>
 
 <body>
     <div class="main">
-
         <div class="maintext">
-            <!-- Add an ID to the form for easier access in JavaScript -->
-            <form id="signupForm" action="http://localhost:3000/signup" method="post">
+            <form id="signupForm" action="/register" method="post">
                 <p class="p1">Create Account</p>
                 <p class="p2">or use your email for registration</p><br><br>
-                <!-- Add IDs to the input fields for easier access in JavaScript -->
-                <input type="text" id="username" name="username" placeholder="Username"><br>
-                <input type="text" id="email" name="email" placeholder="Email"><br>
-                <input type="text" id="password" name="password" placeholder="Password"><br><br><br><br>
+                <input type="text" id="username" name="username" placeholder="Username" required><br>
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <input type="password" id="password" name="password" placeholder="Password" required><br><br><br><br>
                 <button type="submit">SIGN UP</button><br>
             </form>
             <div class="maintext1">
                 <p class="p1">Welcome Back!</p>
-                <p class="p2">To keep connected with us please login with your personal info</p>
-                <!-- Add an ID to the "Sign In" button for easier access in JavaScript -->
-                <button id="signInBtn">SIGN IN </button><br>
+                <p class="p2">To keep connected with us, please login with your personal info</p>
+                <a href="/login">
+                    <button id="signInBtn">SIGN IN</button><br>
+                </a>
             </div>
         </div>
         <div class="lockimage">
-            <img src="sign_up.jpg" alt="" height="500">
+            <img src="/images/sign_up.jpg" alt="" height="500">
         </div>
-
     </div>
     <script>
+        // Add event listener to hide the form when "Sign In" button is clicked
+        signInBtn.addEventListener('click', function () {
+            signupForm.classList.add('hidden');
+        });
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Find the signup form and the Sign In button
             const signupForm = document.getElementById('signupForm');
             const signInBtn = document.getElementById('signInBtn');
-
-            signupForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-
-                fetch('http://localhost:3000/signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        email: email,
-                        password: password,
-                    }),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Server response:', data);
-                        // You can handle the response from the server here
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            });
 
             // Add event listener to hide the form when "Sign In" button is clicked
             signInBtn.addEventListener('click', function () {
                 signupForm.classList.add('hidden');
             });
+
+            // Check for successful signup and clear history
+            const queryParams = new URLSearchParams(window.location.search);
+            const successParam = queryParams.get('success');
+
+            if (successParam === 'true') {
+                // Use replaceState to clear history
+                window.history.replaceState(null, null, window.location.pathname);
+
+                // Remove the successParam from the URL
+                const urlWithoutParam = window.location.href.replace(window.location.search, '');
+                window.history.replaceState(null, null, urlWithoutParam);
+            }
         });
     </script>
 </body>
