@@ -3,11 +3,9 @@ const pool = require('../db'); // Import the database connection
 module.exports = {
     north: async (req, res) => {
         let q1 = 'SELECT SerialNo, Category, Location, StateorUT, Value_Stolen_2014, Value_Recovered_2014, Percentage_Recovery_2014, Value_Stolen_2015, Value_Recovered_2015, Percentage_Recovery_2015, Value_Stolen_2016, Value_Recovered_2016, Percentage_Recovery_2016 FROM Main_Data WHERE Location = "North"';
-        let q2 = 'SELECT * FROM Main_Data';
         try {
             const [data] = await pool.query(q1);
-            const [info] = await pool.query(q2);
-            res.render('north.ejs', { Main_Data: data ,Main_Data:info});
+            res.render('north.ejs', { Main_Data: data});
         } catch (err) {
             console.error(err);
             res.send('Some error in the database');
@@ -16,11 +14,9 @@ module.exports = {
 
     east: async (req, res) => {
         let q1 = 'SELECT SerialNo, Category, Location, StateorUT, Value_Stolen_2014, Value_Recovered_2014, Percentage_Recovery_2014, Value_Stolen_2015, Value_Recovered_2015, Percentage_Recovery_2015, Value_Stolen_2016, Value_Recovered_2016, Percentage_Recovery_2016 FROM Main_Data WHERE Location = "East"';
-        let q2 = 'SELECT * FROM Main_Data';
         try {
             const [data] = await pool.query(q1);
-            const [info] = await pool.query(q2);
-            res.render('east.ejs', { Main_Data: data,Main_Data:info });
+            res.render('east.ejs', { Main_Data: data });
         } catch (err) {
             console.error(err);
             res.send('Some error in the database');
@@ -29,11 +25,9 @@ module.exports = {
 
     west: async (req, res) => {
         let q1 = 'SELECT SerialNo, Category, Location, StateorUT, Value_Stolen_2014, Value_Recovered_2014, Percentage_Recovery_2014, Value_Stolen_2015, Value_Recovered_2015, Percentage_Recovery_2015, Value_Stolen_2016, Value_Recovered_2016, Percentage_Recovery_2016 FROM Main_Data WHERE Location = "West"';
-        let q2 = 'SELECT * FROM Main_Data';
         try {
             const [data] = await pool.query(q1);
-            const [info] = await pool.query(q2);
-            res.render('west.ejs', { Main_Data: data ,Main_Data:info});
+            res.render('west.ejs', { Main_Data: data});
         } catch (err) {
             console.error(err);
             res.send('Some error in the database');
@@ -42,11 +36,9 @@ module.exports = {
 
     south: async (req, res) => {
         let q1 = 'SELECT SerialNo, Category, Location, StateorUT, Value_Stolen_2014, Value_Recovered_2014, Percentage_Recovery_2014, Value_Stolen_2015, Value_Recovered_2015, Percentage_Recovery_2015, Value_Stolen_2016, Value_Recovered_2016, Percentage_Recovery_2016 FROM Main_Data WHERE Location = "South"';
-        let q2 = 'SELECT * FROM Main_Data';
         try {
             const [data] = await pool.query(q1);
-            const [info] = await pool.query(q2);
-            res.render('south.ejs', { Main_Data: data ,Main_Data:info});
+            res.render('south.ejs', { Main_Data: data});
         } catch (err) {
             console.error(err);
             res.send('Some error in the database');
@@ -55,11 +47,9 @@ module.exports = {
 
     central: async (req, res) => {
         let q1 = 'SELECT SerialNo, Category, Location, StateorUT, Value_Stolen_2014, Value_Recovered_2014, Percentage_Recovery_2014, Value_Stolen_2015, Value_Recovered_2015, Percentage_Recovery_2015, Value_Stolen_2016, Value_Recovered_2016, Percentage_Recovery_2016 FROM Main_Data WHERE Location = "Central"';
-        let q2 = 'SELECT * FROM Main_Data';
         try {
             const [data] = await pool.query(q1);
-            const [info] = await pool.query(q2);
-            res.render('central.ejs', { Main_Data: data ,Main_Data:info});
+            res.render('central.ejs', { Main_Data: data});
         } catch (err) {
             console.error(err);
             res.send('Some error in the database');
