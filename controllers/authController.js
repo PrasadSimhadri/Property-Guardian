@@ -7,14 +7,15 @@ exports.login = async (req, res) => {
         const sql = 'SELECT * FROM USERDATA WHERE email = ? AND password = ?';
         const results = await pool.query(sql, [email, password]);
 
-        if (results.length > 0) {
+        if (results.length > 0 && results[0].email === email && results[0].password === password) {
+            // Valid login credentials
             console.log('Login successful');
             return res.redirect('/home');
+        } else {
+            // Invalid email or password
+            console.log('Invalid email or password');
+            return res.redirect('/login');
         }
-
-        // If any condition fails or if the password doesn't match
-        console.log('Invalid email or password');
-        return res.redirect('/login');
     } catch (error) {
         console.error('Error during login:', error);
         return res.redirect('/login');
